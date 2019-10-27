@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,7 +12,12 @@ public partial class BasicInfoForm : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Session["firstName"] = firstNameTextbox.Text;
+        Session["lastName"] = lastNameTextbox.Text;
+        Session["gender"] = genderTextbox.Text;
+        Session["dateOfBirth"] = dateOfBirthTextbox.Text;
+        Session["email"] = emailTextbox.Text;
+        Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
     }
 
     protected void submitBasicInfo(object sender, EventArgs e)
@@ -21,9 +26,13 @@ public partial class BasicInfoForm : System.Web.UI.Page
         //System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand();
         //insert.Connection = sc;
 
-        //create a Tenant object
-        Tenant newTenantInfo = new Tenant(firstNameTextbox.Text, lastNameTextbox.Text, genderTextbox.Text,
-            dateOfBirthTextbox.Text, emailTextbox.Text, phoneNumberTextbox.Text);
+        ////create a Tenant object
+        //Session["firstName"] = firstNameTextbox.Text;
+        //Session["lastName"] = lastNameTextbox.Text;
+        //Session["gender"] = genderTextbox.Text;
+        //Session["dateOfBirth"] = dateOfBirthTextbox.Text;
+        //Session["email"] = emailTextbox.Text;
+        //Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
     }
 
 }

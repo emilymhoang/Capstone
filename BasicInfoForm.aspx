@@ -81,10 +81,12 @@
             <div class="col">
               <label for="formGroupExampleInput">First Name</label>
               <asp:Textbox ID="firstNameTextbox" class="form-control" placeholder="First Name" runat="server"></asp:Textbox>
+                <asp:RequiredFieldValidator ID="firstNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="firstNameTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Last Name</label>
               <asp:Textbox id="lastNameTextbox" class="form-control" placeholder="Last Name" runat="server"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="lastNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="lastNameTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
           <br>
@@ -92,10 +94,12 @@
             <div class="col">
               <label for="formGroupExampleInput">Gender</label>
               <asp:Textbox id="genderTextbox" class="form-control" placeholder="Gender" runat="server"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="genderRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="genderTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Date of Birth</label>
               <asp:Textbox id="dateOfBirthTextbox" class="form-control" placeholder="DD-MM-YYYY" runat="server"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="dateOfBirthRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="dateOfBirthTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
           <br>
@@ -103,10 +107,12 @@
             <div class="col">
               <label for="formGroupExampleInput">Email</label>
               <asp:Textbox id="emailTextbox" runat="server" class="form-control" placeholder="example@example.com"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Phone Number</label>
               <asp:Textbox id="phoneNumberTextbox" class="form-control" placeholder="xxx-xxx-xxxx" runat="server"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
         <br>
