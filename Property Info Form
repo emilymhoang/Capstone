@@ -165,7 +165,16 @@
              <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Please briefly describe your property*</label>
-              <asp:Textbox ID="describePropTextbox" class="form-control" placeholder="" runat="server"></asp:Textbox>
+              <asp:DropDownList ID="DropDownList1" runat="server">
+    <asp:ListItem Value="Single Room">Single Room</asp:ListItem>
+                  <asp:ListItem Value="Shared Space">Shared Space</asp:ListItem>
+</asp:DropDownList>
+            </div>
+          </div> <!--end row class-->
+            <div class="row">
+            <div class="col">
+              <label for="formGroupExampleInput">What best describes your property?*</label>
+              <asp:Textbox ID="Textbox2" class="form-control" placeholder="" runat="server"></asp:Textbox>
             </div>
           </div> <!--end row class-->
              <div class="row">
