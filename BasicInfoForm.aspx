@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Search.aspx.cs" Inherits="Search" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="BasicInfoForm.aspx.cs" Inherits="BasicInfoForm" %>
 
 <!doctype html>
 <html lang="en">
@@ -66,9 +66,7 @@
        <div class="row">
            <div class="col-md-6 promar" >
                 <div class="progress " >
-
-                <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 75%; " aria-valuenow="75" ></div>
-
+                <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 25%; " aria-valuenow="25" ></div>
                </div>
            </div>
        </div>
@@ -81,50 +79,50 @@
         <form runat="server">
           <div class="row">
             <div class="col">
-              <label for="formGroupExampleInput">Search by City or ZIP Code</label>
-
-              <asp:Textbox ID="searchTextbox" type="text" class="form-control" placeholder="" runat="server"></asp:Textbox>
-              <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
+              <label for="formGroupExampleInput">First Name</label>
+              <asp:Textbox ID="firstNameTextbox" class="form-control" placeholder="First Name" runat="server"></asp:Textbox>
+                <asp:RequiredFieldValidator ID="firstNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="firstNameTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
-              <!--end col-->
+            <div class="col">
+              <label for="formGroupExampleInput">Last Name</label>
+              <asp:Textbox id="lastNameTextbox" class="form-control" placeholder="Last Name" runat="server"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="lastNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="lastNameTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
+            </div> <!--end col-->
           </div> <!--end row class-->
           <br>
           <div class="row">
             <div class="col">
-              <label for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs</label><br>
-                <label for="formGroupExampleInput">Search for...</label>
+              <label for="formGroupExampleInput">Gender</label>
+              <asp:Textbox id="genderTextbox" class="form-control" placeholder="Gender" runat="server"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="genderRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="genderTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
-             <!--end col-->
+            <div class="col">
+              <label for="formGroupExampleInput">Date of Birth</label>
+              <asp:Textbox id="dateOfBirthTextbox" class="form-control" placeholder="DD-MM-YYYY" runat="server"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="dateOfBirthRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="dateOfBirthTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
+            </div> <!--end col-->
           </div> <!--end row class-->
           <br>
           <div class="row">
             <div class="col">
-
-              <asp:CheckBox ID="singleRoomCheck" type=" checkbox" name="Single Room" value="Single Room" runat="server"></asp:Checkbox> Single Room<br>
-               <asp:CheckBox ID="privateRoomCheck" type=" checkbox" name="Private Room" value="Private Room" runat="server"></asp:Checkbox> Private Room<br>
-                <asp:CheckBox ID="privateAptCheck" type="checkbox" name="Private Aprtment" value="Private Aprtment" runat="server"></asp:Checkbox> Private Room<br>
+              <label for="formGroupExampleInput">Email</label>
+              <asp:Textbox id="emailTextbox" runat="server" class="form-control" placeholder="example@example.com"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
-              <div class="col">
-              <asp:CheckBox ID="furnishedCheck" type="checkbox" name="Furnished" value="Furnished" runat="server"></asp:Checkbox>Furnished<br>
-               <asp:CheckBox ID="privateBathroomCheck" type="checkbox" name="Private Bathroom" value="Private Bathroom" runat="server"></asp:Checkbox> Private Bathroom<br>
-                <asp:CheckBox ID="closetCheck" type="checkbox" name="Closet/Storage Space" value="Closet/Storage Space" runat="server"></asp:Checkbox> Closet/ Storage Space<br>
-            </div>
-              <div class="col">
-              <asp:CheckBox ID="nonSmokerCheck" type="checkbox" name="Non-Smokers" value="Non-Smokers" runat="server"></asp:Checkbox> Non-Smokers<br>
-               <asp:CheckBox ID="petsCheck" type="checkbox" name="Pets" value="Pets" runat="server"></asp:CheckBox> Pets<br>
-                <asp:CheckBox ID="noPetsCheck" type="checkbox" name="No Pets" value="No Pets" runat="server"></asp:Checkbox> No Pets<br>
-            </div>
-             <!--end col-->
+            <div class="col">
+              <label for="formGroupExampleInput">Phone Number</label>
+              <asp:Textbox id="phoneNumberTextbox" class="form-control" placeholder="xxx-xxx-xxxx" runat="server"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="Red"></asp:RequiredFieldValidator>
+            </div> <!--end col-->
           </div> <!--end row class-->
         <br>
         
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
             
-
-             <div class="col-md-6"><asp:Button ID="searchButton" text="Submit" runat="server" class="btn" type="submit" onClick="search_Click" style="float: right;"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="submitButton" class="btn" Text ="Next" type="submit" onClick="submitBasicInfo" style="float: right;" runat="server"></asp:Button></div>
             
-        </div>
+        </div>     
        </form> <!--end form-->
       </div> <!--end container-->
     </section>
