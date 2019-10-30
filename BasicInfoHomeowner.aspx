@@ -90,12 +90,8 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Gender</label>
-              <asp:DropDownList ID="DropDownListGender" runat="server">
-	<asp:ListItem Value="M">Male</asp:ListItem>
-    <asp:ListItem Value="F">Female</asp:ListItem>
-    <asp:ListItem Value="O">Other</asp:ListItem>
-                  </asp:DropDownList>
-              <asp:RequiredFieldValidator ID="genderRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListGender" ForeColor="#B23325"></asp:RequiredFieldValidator>
+              <asp:Textbox id="genderTextbox" class="form-control" MaxLength="30" placeholder="Gender" runat="server"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="genderRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="genderTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Date of Birth</label>
@@ -110,23 +106,11 @@
               <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
               <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
-           <div class="col">
-              <label for="formGroupExampleInput">Confirm Email</label>
-              <asp:Textbox id="confirmEmailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
-              <asp:RequiredFieldValidator ID="confirmRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="confirmEmailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
-            </div> <!--end col-->
-          </div> <!--end row class-->
-        <br>
-            <br>
-          <div class="row">
-             <div class="col">
+            <div class="col">
               <label for="formGroupExampleInput">Phone Number</label>
-              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="50" placeholder="xxx-xxx-xxxx" runat="server"></asp:Textbox>
+              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="12" placeholder="xxx-xxx-xxxx" runat="server"></asp:Textbox>
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
-            </div>
-              <div class="col">
-             </div>
-          <!--end col-->
+            </div> <!--end col-->
           </div> <!--end row class-->
         <br>
         

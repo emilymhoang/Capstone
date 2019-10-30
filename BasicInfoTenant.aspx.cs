@@ -19,7 +19,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
     {
         Session["firstName"] = firstNameTextbox.Text;
         Session["lastName"] = lastNameTextbox.Text;
-        Session["gender"] = DropDownListGender.SelectedValue;
+        Session["gender"] = genderTextbox.Text;
         Session["dateOfBirth"] = dateOfBirthTextbox.Text;
         Session["email"] = emailTextbox.Text;
         Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
@@ -37,7 +37,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
     {
         firstNameTextbox.Text = "Emily";
         lastNameTextbox.Text = "Hoang";
-        DropDownListGender.SelectedValue = "F";
+        genderTextbox.Text = "F";
         dateOfBirthTextbox.Text = "12-02-1997";
         emailTextbox.Text = "emily@gmail.com";
         phoneNumberTextbox.Text = "703-342-7285";

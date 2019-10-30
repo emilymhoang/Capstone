@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
    <header style="margin-top: 8rem;">
       <div class="container">
         <h1>Login to your account</h1>
