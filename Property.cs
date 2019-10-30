@@ -5,7 +5,8 @@ using System.Web;
 
 public class Property
 {
-    public static List<Property> lstPropertySearchResults = new List<Property>();
+    public static List<Property> lstPropertySearchResults= new List<Property>();
+
 
     public int propertyID { get; private set; }
     public int houseNumber { get; private set; }
