@@ -17,6 +17,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void submitLogin_Click(object sender, EventArgs e)
     {
+
         System.Data.SqlClient.SqlCommand findPass = new System.Data.SqlClient.SqlCommand();
         sc.Open();
         findPass = new SqlCommand("select Password from Login where Email = @Email", sc);
