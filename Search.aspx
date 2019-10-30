@@ -66,7 +66,9 @@
        <div class="row">
            <div class="col-md-6 promar" >
                 <div class="progress " >
-                <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 25%; " aria-valuenow="25" ></div>
+
+                <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 75%; " aria-valuenow="75" ></div>
+
                </div>
            </div>
        </div>
@@ -80,7 +82,9 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Search by City or ZIP Code</label>
-              <asp:Textbox type="text" class="form-control" placeholder="" runat="server"></asp:Textbox>
+
+              <asp:Textbox ID="searchTextbox" type="text" class="form-control" placeholder="" runat="server"></asp:Textbox>
+              <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
             </div>
               <!--end col-->
           </div> <!--end row class-->
@@ -95,19 +99,20 @@
           <br>
           <div class="row">
             <div class="col">
-              <asp:CheckBox type="checkbox" name="Single Room" value="Single Room" runat="server"></asp:Checkbox> Single Room<br>
-               <asp:CheckBox type="checkbox" name="Private Room" value="Private Room" runat="server"></asp:Checkbox> Private Room<br>
-                <asp:CheckBox type="checkbox" name="Private Aprtment" value="Private Aprtment" runat="server"></asp:Checkbox> Private Room<br>
+
+              <asp:CheckBox ID="singleRoomCheck" type=" checkbox" name="Single Room" value="Single Room" runat="server"></asp:Checkbox> Single Room<br>
+               <asp:CheckBox ID="privateRoomCheck" type=" checkbox" name="Private Room" value="Private Room" runat="server"></asp:Checkbox> Private Room<br>
+                <asp:CheckBox ID="privateAptCheck" type="checkbox" name="Private Aprtment" value="Private Aprtment" runat="server"></asp:Checkbox> Private Room<br>
             </div>
               <div class="col">
-              <asp:CheckBox type="checkbox" name="Furnished" value="Furnished" runat="server"></asp:Checkbox>Furnished<br>
-               <asp:CheckBox type="checkbox" name="Private Bathroom" value="Private Bathroom" runat="server"></asp:Checkbox> Private Bathroom<br>
-                <asp:CheckBox type="checkbox" name="Closet/ Storage Space" value="Closet/ Storage Space" runat="server"></asp:Checkbox> Closet/ Storage Space<br>
+              <asp:CheckBox ID="furnishedCheck" type="checkbox" name="Furnished" value="Furnished" runat="server"></asp:Checkbox>Furnished<br>
+               <asp:CheckBox ID="privateBathroomCheck" type="checkbox" name="Private Bathroom" value="Private Bathroom" runat="server"></asp:Checkbox> Private Bathroom<br>
+                <asp:CheckBox ID="closetCheck" type="checkbox" name="Closet/Storage Space" value="Closet/Storage Space" runat="server"></asp:Checkbox> Closet/ Storage Space<br>
             </div>
               <div class="col">
-              <asp:CheckBox type="checkbox" name="Non-Smokers" value="Non-Smokers" runat="server"></asp:Checkbox> Non-Smokers<br>
-               <asp:CheckBox type="checkbox" name="Pets" value="Pets" runat="server"></asp:Checkbox> Pets<br>
-                <asp:CheckBox type="checkbox" name="No Pets" value="No Pets" runat="server"></asp:Checkbox> No Pets<br>
+              <asp:CheckBox ID="nonSmokerCheck" type="checkbox" name="Non-Smokers" value="Non-Smokers" runat="server"></asp:Checkbox> Non-Smokers<br>
+               <asp:CheckBox ID="petsCheck" type="checkbox" name="Pets" value="Pets" runat="server"></asp:CheckBox> Pets<br>
+                <asp:CheckBox ID="noPetsCheck" type="checkbox" name="No Pets" value="No Pets" runat="server"></asp:Checkbox> No Pets<br>
             </div>
              <!--end col-->
           </div> <!--end row class-->
@@ -116,7 +121,8 @@
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
             
-             <div class="col-md-6"><asp:Button text="Submit" runat="server" class="btn" type="submit" onClick="search" style="float: right;"></asp:Button></div>
+
+             <div class="col-md-6"><asp:Button ID="searchButton" text="Submit" runat="server" class="btn" type="submit" onClick="search_Click" style="float: right;"></asp:Button></div>
             
         </div>
        </form> <!--end form-->
