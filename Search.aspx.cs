@@ -46,7 +46,7 @@ public partial class Search : System.Web.UI.Page
         
 
 
-        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString))
+        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
             {

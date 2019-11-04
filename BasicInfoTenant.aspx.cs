@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -10,35 +9,50 @@ using System.Web.UI.WebControls;
 
 public partial class BasicInfoTenant : System.Web.UI.Page
 {
-    SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString);
+    SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
 
+    
     protected void submitBasicInfo(object sender, EventArgs e)
     {
-        if (emailTextbox.Text == confirmEmailTextbox.Text)
-        {
-            Session["firstName"] = firstNameTextbox.Text;
-            Session["lastName"] = lastNameTextbox.Text;
-            Session["gender"] = DropDownListGender.SelectedValue;
-            Session["dateOfBirth"] = dateOfBirthTextbox.Text;
-            Session["email"] = emailTextbox.Text;
-            Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
+        String emailNew = emailTextbox.Text;
+        Session["Email"] = emailNew;
 
-            //Session["firstName"] = "Emily";
-            //Session["lastName"] = "Hoang";
-            //Session["gender"] = "F";
-            //Session["dateOfBirth"] = "12-02-1997";
-            //Session["email"] = "emily@gmail.com";
-            //Session["phoneNumberTextbox"] = "703-342-7285";
-            Response.Redirect("CreateLoginTenant.aspx");
+
+        sc.Open();
+        SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Tenant] WHERE lower(email) = @Email", sc);
+        emailCheck.Parameters.AddWithValue("@Email", emailNew);
+        emailCheck.Connection = sc;
+        int count = Convert.ToInt32(emailCheck.ExecuteScalar());
+        emailCheck.ExecuteNonQuery();
+        sc.Close();
+
+        if (count == 0)
+        {
+            if (emailTextbox.Text == confirmEmailTextbox.Text)
+            {
+                Session["firstName"] = firstNameTextbox.Text;
+                Session["lastName"] = lastNameTextbox.Text;
+                Session["gender"] = DropDownListGender.SelectedValue;
+                Session["dateOfBirth"] = dateOfBirthTextbox.Text;
+                Session["email"] = emailTextbox.Text;
+                Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
+
+                Response.Redirect("CreateLoginTenant.aspx");
+            }
+            else
+            {
+                resultmessage.Text = "Emails do not match.";
+            }
         }
         else
         {
-            resultmessage.Text = "Emails do not match.";
+            emailLabel.Text = "Email already exists.";
         }
+
     }
 
     protected void populate(object sender, EventArgs e)
@@ -52,35 +66,10 @@ public partial class BasicInfoTenant : System.Web.UI.Page
         phoneNumberTextbox.Text = "703-342-7285";
 
     }
-
     protected void UploadButton_Click(object sender, EventArgs e)
     {
-        if (FileUploadControl.HasFile)
-        {
-            try
-            {
-                if (FileUploadControl.PostedFile.ContentType == "image/jpeg")
-                {
-
-
-                    string address = Path.GetFileName(FileUploadControl.FileName);
-                    FileUploadControl.SaveAs(Server.MapPath("~/") + address);
-                    StatusLabel.Text = "Upload Status: File uploaded";
-                    Session["profilepicture"] = address;
-                }
-                else
-                {
-                    StatusLabel.Text = "Upload status: only JPEG accepted!";
-                }
-
-            }
-            catch (Exception)
-            {
-                StatusLabel.Text = "Upload status: File could not be uploaded";
-            }
-        }
+        //Insert image
     }
 
 
-
-}
+    }

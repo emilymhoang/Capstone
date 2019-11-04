@@ -130,11 +130,14 @@
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                     <div><asp:ListView id="lvMessages" runat="server" Visible="true" >
-                        <LayoutTemplate><h1>Message Board</h1>
+                        
+                        <LayoutTemplate>
+                            <h1>Message Board</h1>
                         <table id="tbl1" runat="server">
                             <tr id="itemPlaceholder" runat="server"></tr>
                         </table>
                         </LayoutTemplate>
+
                         <ItemTemplate>
                         <table>
                                 <tr>
@@ -173,12 +176,14 @@
                         <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 30px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
                     </center>
                     <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 30px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
+                       
                         <asp:DropDownList ID="hostNameDropdown" runat="server">
-                    </asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CapstoneConnectionString %>" SelectCommand="Select Concat(h.FirstName, h.LastName)
-                                from Host h
-                                LEFT OUTER JOIN Favorites f
-                                on h.HostID = f.HostID;"></asp:SqlDataSource>
+                            <asp:ListItem>02</asp:ListItem>
+                            <asp:ListItem>03</asp:ListItem>
+                            <asp:ListItem>04</asp:ListItem>
+                        </asp:DropDownList>
+                       
+                        
                         <br />
                     <center>
                         <asp:TextBox ID="messageTextbox" TextMode="MultiLine" class="form-control" style="height:300px; width:400px;" runat="server"></asp:TextBox>
@@ -190,7 +195,7 @@
                 <AjaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="Panel1" TargetControlID="createMessageButton" BackgroundCssClass="modalBackground" CancelControlID="cancelButton">
                 </AjaxToolkit:ModalPopupExtender>
     </div>
-    <a data-config="commands=*;size=14;status=off;theme=logo;language=en;bgcolor=#2a92f3;hostname=www.skaip.org" id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
+    <a data-config="commands=videocall;size=14;status=off;theme=logo;language=en;bgcolor=#000000;hostname=www.skaip.org" id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
     <div>
         <a href="skype:Echo123"><button class="btn btn-primary" style="font-family: 'Oswald', sans-serif; color: white; font-size: 18px;">Videochat</button></a>
     </div>

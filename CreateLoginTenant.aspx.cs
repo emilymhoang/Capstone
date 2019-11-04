@@ -6,20 +6,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Data;
-using System.IO;
 
 public partial class CreateLoginTenant : System.Web.UI.Page
 {
     //Create database connection
-    SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString);
+    SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     String firstName;
     String lastName;
     String gender;
     String dateOfBirth;
     String email;
     String phoneNumber;
-    String profilePic;
     
 
     protected void Page_Load(object sender, EventArgs e)
@@ -34,29 +31,24 @@ public partial class CreateLoginTenant : System.Web.UI.Page
     protected void submitLogin_Click(object sender, CommandEventArgs e)
     {
         //Username
-        
-        String userNew = userNameTextbox.Text;
+
+
         //ValidatePassword(username);
-        String username = userNameTextbox.Text;
-        Session["username"]= username;
-        
+        String userNew = userNameTextbox.Text;
+        Session["username"] = userNew;
+
 
         sc.Open();
-        SqlCommand userCheck = new SqlCommand("SELECT Username FROM [Capstone].[dbo].[Login] WHERE lower(Username) = @Username", sc);
-            
-        userCheck.Parameters.AddWithValue("@Username", username);
+        SqlCommand userCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Login] WHERE lower(Username) = @Username", sc);
+
+        userCheck.Parameters.AddWithValue("@Username", userNew);
         userCheck.Connection = sc;
-        String userDup = Convert.ToString(userCheck.ExecuteScalar());
+        int count = Convert.ToInt32(userCheck.ExecuteScalar());
         userCheck.ExecuteNonQuery();
         sc.Close();
-        if (userDup == userNew)
-        {
-            resultUser.Text = "Sorry, That Username Has Been Taken";
-        }
-        else
-            resultUser.Text = "Valid Username";
-        
-        
+
+
+
         //Password 
         System.Data.SqlClient.SqlCommand insertTenant = new System.Data.SqlClient.SqlCommand();
         insertTenant.Connection = sc;
@@ -69,98 +61,82 @@ public partial class CreateLoginTenant : System.Web.UI.Page
         dateOfBirth = Session["dateOfBirth"].ToString();
         email = Session["email"].ToString();
         phoneNumber = Session["phoneNumberTextbox"].ToString();
-        //profilePic = Session["profilepicture"].ToString();
 
         String password = passwordTextbox.Text;
         String cpassword = confirmPasswordTextbox.Text;
 
         Session["password"] = password;
 
-        bool isValid;
-        if (password.Length > 8 && (isValid = ValidatePassword(password)))
+        if (count == 0)
         {
-            if (password == cpassword)
+            bool isValid;
+            if (password.Length > 8 && (isValid = ValidatePassword(password)))
             {
-                Tenant newTenant = new Tenant(firstName, lastName, gender, dateOfBirth, email, phoneNumber, userNameTextbox.Text, passwordTextbox.Text, confirmPasswordTextbox.Text);
-                resultmessage.Text = "";
-
-
-                insertTenant.CommandText = "INSERT INTO [Capstone].[dbo].[Tenant] (Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
-                            "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated) VALUES (@Email, @PhoneNumber, @FirstName, @MiddleName," +
-                            "@LastName, @BirthDate, @Gender, @BackgroundCheckDate, @BackgroundCheckResult, @LastUpdatedBy, @LastUpdated); ";
-
-
-
-                insertTenant.Parameters.AddWithValue("@Email", email);
-                insertTenant.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
-                insertTenant.Parameters.AddWithValue("@FirstName", firstName);
-                insertTenant.Parameters.AddWithValue("@MiddleName", "fakeMiddleName");
-                insertTenant.Parameters.AddWithValue("@LastName", lastName);
-                insertTenant.Parameters.AddWithValue("@BirthDate", dateOfBirth);
-                insertTenant.Parameters.AddWithValue("@Gender", gender);
-                insertTenant.Parameters.AddWithValue("@BackgroundCheckDate", DateTime.Now);
-                insertTenant.Parameters.AddWithValue("@BackgroundCheckResult", "Y");
-                //ADD USERNAME and CONFIRM PASSOWRD IN DATABASE
-                insertTenant.Parameters.AddWithValue("@LastUpdatedBy", "Kessler");
-                insertTenant.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
-                //insertTenant.Parameters.Add("@ProfilePic", GetImage(profilePic));
-
-
-                sc.Open();
-                insertTenant.ExecuteNonQuery();
-
-
-                SqlCommand insert = new SqlCommand("SELECT TenantID FROM [Capstone].[dbo].[Tenant] WHERE lower(Email) = @Email", sc);
-                insert.Parameters.AddWithValue("@Email", email.ToLower());
-                insert.Connection = sc;
-                int tenantID = Convert.ToInt32(insert.ExecuteScalar());
-                insert.ExecuteNonQuery();
-              
-
-                Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);
-                insertLogin.CommandText = "INSERT INTO [Capstone].[dbo].[Login] (Username, Password, TenantID) VALUES (@userName, @Password, @TenantID)";
-                insertLogin.Parameters.AddWithValue("@userName", newTenant.userName);
-                insertLogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(newTenant.password));
-                insertLogin.Parameters.AddWithValue("@TenantID", tenantID);
-
-                if (FileUploadControl.HasFile)
+                if (password == cpassword)
                 {
-                    string strname = FileUploadControl.FileName.ToString();
-                    //FileUploadControl.PostedFile.SaveAs(Server.MapPath("~/") + strname);
-                    SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[Tenant] SET ProfilePic = @strname WHERE TenantID = @TenantID", sc);
-                    cmd.Parameters.AddWithValue("@TenantID", tenantID);
-                    cmd.Parameters.AddWithValue("@strname", strname);
-                    cmd.ExecuteNonQuery();
+                    Tenant newTenant = new Tenant(firstName, lastName, gender, dateOfBirth, email, phoneNumber, userNameTextbox.Text, passwordTextbox.Text, confirmPasswordTextbox.Text);
+                    resultmessage.Text = "";
+                    insertTenant.CommandText = "INSERT INTO [Capstone].[dbo].[Tenant] (Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
+                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated) VALUES (@Email, @PhoneNumber, @FirstName, @MiddleName," +
+                                "@LastName, @BirthDate, @Gender, @BackgroundCheckDate, @BackgroundCheckResult, @LastUpdatedBy, @LastUpdated); ";
 
-                    StatusLabel.Text = "Image Uploaded successfully";
+                    insertTenant.Parameters.AddWithValue("@Email", email);
+                    insertTenant.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+                    insertTenant.Parameters.AddWithValue("@FirstName", firstName);
+                    insertTenant.Parameters.AddWithValue("@MiddleName", " ");
+                    insertTenant.Parameters.AddWithValue("@LastName", lastName);
+                    insertTenant.Parameters.AddWithValue("@BirthDate", dateOfBirth);
+                    insertTenant.Parameters.AddWithValue("@Gender", gender);
+                    insertTenant.Parameters.AddWithValue("@BackgroundCheckDate", DateTime.Now);
+                    insertTenant.Parameters.AddWithValue("@BackgroundCheckResult", "Y");
+                    //ADD USERNAME and CONFIRM PASSOWRD IN DATABASE
+                    insertTenant.Parameters.AddWithValue("@LastUpdatedBy", lastName);
+                    insertTenant.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
+
+                    sc.Open();
+                    insertTenant.ExecuteNonQuery();
+
+                    SqlCommand insert = new SqlCommand("SELECT TenantID FROM [Capstone].[dbo].[Tenant] WHERE lower(Email) = @Email", sc);
+                    insert.Parameters.AddWithValue("@Email", email.ToLower());
+                    insert.Connection = sc;
+                    int tenantID = Convert.ToInt32(insert.ExecuteScalar());
+                    insert.ExecuteNonQuery();
+
+
+                    Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);
+                    insertLogin.CommandText = "INSERT INTO [Capstone].[dbo].[Login] (Username, Password, TenantID) VALUES (@userName, @Password, @TenantID)";
+                    insertLogin.Parameters.AddWithValue("@userName", newTenant.userName);
+                    insertLogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(newTenant.password));
+                    insertLogin.Parameters.AddWithValue("@TenantID", tenantID);
+
+                    SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [Capstone].[dbo].[Login] WHERE TenantID = @TenantID", sc);
+                    getAccountID.Parameters.AddWithValue("@TenantID", tenantID);
+                    getAccountID.Connection = sc;
+                    int accountID = Convert.ToInt32(getAccountID.ExecuteScalar());
+                    getAccountID.ExecuteNonQuery();
+                    Session["accountID"] = accountID;
+                    Session["username"] = newTenant.userName;
+
+                    insertLogin.ExecuteNonQuery();
+                    sc.Close();
+                    Response.Redirect("CreateAccountSafety.aspx");
                 }
                 else
                 {
-                    StatusLabel.Text = "Plz upload the image!!!!";
+                    resultmessage.Text = "Passwords does not match.";
                 }
-
-
-                SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [Capstone].[dbo].[Login] WHERE TenantID = @TenantID", sc);
-                getAccountID.Parameters.AddWithValue("@TenantID", tenantID);
-                getAccountID.Connection = sc;
-                int accountID = Convert.ToInt32(getAccountID.ExecuteScalar());
-                getAccountID.ExecuteNonQuery();
-                Session["accountID"] = accountID;
-                Session["username"] = newTenant.userName;
-
-                insertLogin.ExecuteNonQuery();
-                sc.Close();
-                Response.Redirect("CreateAccountSafety.aspx");
             }
             else
             {
-                resultmessage.Text = "Passwords does not match.";
+                resultmessage.Text = "Password does not meet minimum password requirements.";
             }
         }
         else
         {
-            resultmessage.Text = "Password does not meet minimum password requirements.";
+            resultmessage.Text = "Username already exists.";
         }
+
+
     }
 
     //static bool ValidatePassword(String password)
@@ -209,14 +185,11 @@ public partial class CreateLoginTenant : System.Web.UI.Page
 
     //static bool ValidateUsername(string username)
     //{
-
+    
     //    bool noDuplicate;
 
     //    return noDuplicate;
     //}
-    protected void UploadButton_Click(object sender, EventArgs e)
-    {
 
-    }
 
 }

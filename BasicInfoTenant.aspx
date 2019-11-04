@@ -56,11 +56,27 @@
               <asp:RequiredFieldValidator ID="genderRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListGender" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
+                 <div class="form-group">
               <label for="formGroupExampleInput">Date of Birth</label>
-              <asp:Textbox id="dateOfBirthTextbox" class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" runat="server"></asp:Textbox>
+                    
+              <asp:TextBox ID="dateOfBirthTextbox" ClientIDMode="Static" runat="server" CssClass="m-wrap span12 date form_datetime" class="form-control" MaxLength="10" placeholder="DD-MM-YYYY"></asp:TextBox>
+
+<%--              <asp:Textbox id="dateOfBirthTextbox" class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" runat="server"></asp:Textbox>--%>
               <asp:RequiredFieldValidator ID="dateOfBirthRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="dateOfBirthTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
-            </div> <!--end col-->
+            <script type="text/javascript">
+            $(function () {
+            $('#dateOfBirthTextbox').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                format: "mm/dd/yyyy",
+                language: "tr"
+            });
+        });
+            </script>
+                </div>            
+             </div> <!--end col-->
           </div> <!--end row class-->
+
         <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Email</label>
@@ -72,7 +88,9 @@
               <label for="formGroupExampleInput">Confirm Email</label>
               <asp:Textbox id="confirmEmailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
               <asp:Label ID="resultmessage" runat="server" ForeColor="Red"></asp:Label>
-              <asp:RequiredFieldValidator ID="confirmRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="confirmEmailTextbox" ForeColor="#B23325" Display="Dynamic"></asp:RequiredFieldValidator>
+              <asp:Label ID="emailLabel" runat="server" Text="" ForeColor="Red"></asp:Label>
+                
+                <asp:RequiredFieldValidator ID="confirmRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="confirmEmailTextbox" ForeColor="#B23325" Display="Dynamic"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
           <div class="row">
@@ -87,6 +105,7 @@
                 <asp:Button runat="server" id="UploadButton" text="Upload" onclick="UploadButton_Click" />
                 <br /><br />
                 <asp:Label runat="server" id="StatusLabel" text="Upload status: " />
+
              </div> <!--end col-->
           </div> <!--end row class-->
                           
