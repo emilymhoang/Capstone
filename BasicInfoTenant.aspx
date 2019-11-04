@@ -100,11 +100,6 @@
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
               <div class="col">
-                  <label for="formGroupExampleInput">Profile Picture</label>
-                <asp:FileUpload id="FileUploadControl" runat="server" />
-                <asp:Button runat="server" id="UploadButton" text="Upload" onclick="UploadButton_Click" />
-                <br /><br />
-                <asp:Label runat="server" id="StatusLabel" text="Upload status: " />
 
              </div> <!--end col-->
           </div> <!--end row class-->

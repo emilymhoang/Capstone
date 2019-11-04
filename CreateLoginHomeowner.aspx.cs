@@ -11,7 +11,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
 {
 
     //Create database connection
-    SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString);
+    SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     String firstName;
     String lastName;
     String gender;

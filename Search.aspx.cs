@@ -81,7 +81,7 @@ public partial class Search : System.Web.UI.Page
                                 string state = (string)reader["HomeState"];
                                 string country = (string)reader["Country"];
                                 int zip = Convert.ToInt32(reader["Zip"]);
-                                double price = Convert.ToDouble(reader["PriceRange"]);
+                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
                                 int rooms = (int)reader["NumberBedrooms"];
                                 int availability = 1;
                                 int host = (int)reader["HostID"];

@@ -28,37 +28,38 @@ public partial class _Default : System.Web.UI.Page
 
             SqlDataReader reader = findPass.ExecuteReader(); // create a reader
 
-        if (reader.HasRows) // if the username exists, it will continue
-        {
-            while (reader.Read()) // this will read the single record that matches the entered username
+            if (reader.HasRows) // if the username exists, it will continue
             {
-                string storedHash = reader["Password"].ToString(); // store the database password into this variable
-
-                if (PasswordHash.ValidatePassword(passwordTextbox.Text, storedHash)) // if the entered password matches what is stored, it will show success
+                while (reader.Read()) // this will read the single record that matches the entered username
                 {
-                    resultmessage.Text = "Success!";
-                    loginButton.Enabled = false;
-                    userNameTextbox.Enabled = false;
-                    passwordTextbox.Enabled = false;
-                    SqlCommand insert = new SqlCommand("SELECT AccountID FROM [Capstone].[dbo].[Login] WHERE Username = @Username", sc);
-                    insert.Parameters.AddWithValue("@Username", userNameTextbox.Text);
-                    insert.Connection = sc;
-                    int accountID = Convert.ToInt32(insert.ExecuteScalar());
-                    insert.ExecuteNonQuery();
-                    Session["AccountID"] = accountID;
-                    Session["username"] = userNameTextbox.Text;
+                    string storedHash = reader["Password"].ToString(); // store the database password into this variable
+
+                    if (PasswordHash.ValidatePassword(passwordTextbox.Text, storedHash)) // if the entered password matches what is stored, it will show success
+                    {
+                        resultmessage.Text = "Success!";
+                        loginButton.Enabled = false;
+                        userNameTextbox.Enabled = false;
+                        passwordTextbox.Enabled = false;
+                        SqlCommand insert = new SqlCommand("SELECT AccountID FROM [Capstone].[dbo].[Login] WHERE Username = @Username", sc);
+                        insert.Parameters.AddWithValue("@Username", userNameTextbox.Text);
+                        insert.Connection = sc;
+                        int accountID = Convert.ToInt32(insert.ExecuteScalar());
+                        insert.ExecuteNonQuery();
+                        Session["AccountID"] = accountID;
+                        Session["username"] = userNameTextbox.Text;
+                        Session["LoggedIn"] = true;
+                        Response.Redirect("TenantDashboard.aspx");
                 }
-                else
-                    resultmessage.Text = "Password is wrong.";
+                    else
+                        resultmessage.Text = "Password is wrong.";
+                }
             }
-        }
-        else
-        { // if the username doesn't exist, it will show failure
-            resultmessage.Text = "Login failed.";
-        }
+            else
+            { // if the username doesn't exist, it will show failure
+                resultmessage.Text = "User does not exist.";
+            }
         sc.Close();
-        Session["LoggedIn"] = true;
-        Response.Redirect("TenantDashboard.aspx");
+
         //}
         //catch
         //{

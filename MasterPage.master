@@ -40,14 +40,13 @@
                     <a href="Index.aspx"><img src="images/logo-01.png" alt="Room Magnet Logo" class="img-fluid" style="margin-left: 1em; max-width: 100px;"></a>
                 </div> <!-- end div header left - logo -->
 
-                <div class="col-md-9" style="text-align: right;">
+                <div class="col-md-9 navhome" style="text-align: right;">
                     <!-- start nav header right -->
-                    <div class=" btn">
-                        <asp:Button type="button" class="btn btn" style="font-family: 'Oswald', sans-serif; color: white; font-size: 20px;" runat="server" Text ="Get Started" onClick="getStarted" CausesValidation="false"></asp:Button>
-                    </div>
-                    <div class=" btn">
-                        <asp:Button type="button" class="btn btn" style="font-family: 'Oswald', sans-serif; color: white; font-size: 20px;" runat="server" Text ="My Account" onClick="dashboard" CausesValidation="false"></asp:Button>
-                    </div>
+                    
+                        <asp:Button type="button" class="btn btnb" style="font-family: 'Oswald', sans-serif; color: white; font-size: 20px;" runat="server" Text ="Get Started" onClick="getStarted" CausesValidation="false"></asp:Button>
+                   
+                        <asp:Button type="button" class="btn btnb" style="font-family: 'Oswald', sans-serif; color: white; font-size: 20px;" runat="server" Text ="My Account" onClick="dashboard" CausesValidation="false"></asp:Button>
+              
                     <nav>
                         <ul class="nav justify-content-end">
 

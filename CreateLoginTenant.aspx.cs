@@ -102,6 +102,21 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     int tenantID = Convert.ToInt32(insert.ExecuteScalar());
                     insert.ExecuteNonQuery();
 
+                    if (FileUploadControl.HasFile)
+                    {
+                        string strname = FileUploadControl.FileName.ToString();
+                        //FileUploadControl.PostedFile.SaveAs(Server.MapPath("~/") + strname);
+                        SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[Tenant] SET ProfilePic = @strname WHERE TenantID = @TenantID", sc);
+                        cmd.Parameters.AddWithValue("@TenantID", tenantID);
+                        cmd.Parameters.AddWithValue("@strname", strname);
+                        cmd.ExecuteNonQuery();
+
+                        StatusLabel.Text = "Image Uploaded successfully";
+                    }
+                    else
+                    {
+                        StatusLabel.Text = "Plz upload the image!!!!";
+                    }
 
                     Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);
                     insertLogin.CommandText = "INSERT INTO [Capstone].[dbo].[Login] (Username, Password, TenantID) VALUES (@userName, @Password, @TenantID)";
