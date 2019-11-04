@@ -29,22 +29,21 @@
                </div>
       </div>
      
-       
-       
     </header>
 
     <section id="creation" style="margin-top: 4rem; font-family: 'Oswald', sans-serif; color: #756664; font-size: 18px">
       <div class="container">
           <div class="row">
             <div class="col">
-              <label for="formGroupExampleInput">Address Line 1*</label>
-              <asp:Textbox ID="AddressLine1Textbox" class="form-control" placeholder="" runat="server"></asp:Textbox>
-                <asp:RequiredFieldValidator ID="Address1RequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="AddressLine1Textbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
+              <label for="formGroupExampleInput">House Number*</label>
+              <asp:Textbox ID="houseNumTextbox" class="form-control" placeholder="" runat="server"></asp:Textbox>
+                 <asp:Label ID="propertyResult" runat="server" ForeColor="Red"></asp:Label>
+                <asp:RequiredFieldValidator ID="HouseNumRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="HouseNumTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
-              <label for="formGroupExampleInput">Appt # (If applicable)</label>
-              <asp:Textbox id="AptNumTextbox" class="form-control" placeholder="" runat="server"></asp:Textbox>
-                <asp:RequiredFieldValidator ID="AptNumRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="AptNumTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
+              <label for="formGroupExampleInput">Street Name*</label>
+              <asp:Textbox id="StreetTextbox" class="form-control" placeholder="" runat="server"></asp:Textbox>
+                <asp:RequiredFieldValidator ID="StreetRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="StreetTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
           <br>
@@ -54,6 +53,7 @@
               <asp:Textbox id="cityTextbox" class="form-control" placeholder="" runat="server"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="cityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="cityTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
+            <br />
             <div class="col">
               <label for="formGroupExampleInput">State</label>
               <asp:DropDownList ID="DropDownListState" runat="server">
@@ -121,85 +121,19 @@
           <br>
           <div class="row">
             <div class="col">
-              <label for="formGroupExampleInput">Don't fret, only your city, state, and zip code will appear on your profile to potential tenants</label>
-            </div> <!--end col-->
-          </div> <!--end row class-->
-             <div class="row">
-            <div class="col">
-              <label for="formGroupExampleInput">Please briefly describe your property*</label>
-              <asp:DropDownList ID="DropDownList1" runat="server">
-    <asp:ListItem Value="Single Room">Single Room</asp:ListItem>
-                  <asp:ListItem Value="Shared Space">Shared Space</asp:ListItem>
-</asp:DropDownList>
-            </div>
-          </div> <!--end row class-->
-            <div class="row">
-            <div class="col">
-              <label for="formGroupExampleInput">What best describes your property?*</label>
-              <asp:Textbox ID="displayTextbox" class="form-control" placeholder="" runat="server"></asp:Textbox>
+              
+        
 
-            </div>
-          </div> <!--end row class-->
-             <div class="row">
-            <div class="col">
-              <label for="formGroupExampleInput">Does the space have a private bathroom?*</label>
-              <asp:RadioButtonList ID="rbPribateBr" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesPrivateBr" />
-                    <asp:ListItem Text="No" Value="noPrivateBr" />
-            </asp:RadioButtonList>
-            </div>
-            <div class="col">
-              <label for="formGroupExampleInput">Does the space have a private enterence?*</label>
-              <asp:RadioButtonList ID="rbPrivateEntr" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesPrivateEntr" />
-                    <asp:ListItem Text="No" Value="noPrivateEntr" />
-            </asp:RadioButtonList>
-            </div> <!--end col-->
-                 <div class="col">
-              <label for="formGroupExampleInput">Does the space have a closet/ storage space?*</label>
-              <asp:RadioButtonList ID="rbStorage" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesStorage" />
-                    <asp:ListItem Text="No" Value="noStorage" />
-            </asp:RadioButtonList>
-            </div> <!--end col-->
-          </div> <!--end row class-->
-        <br>
-             <div class="row">
-            <div class="col">
-              <label for="formGroupExampleInput">Is the space furnished?*</label>
-              <asp:RadioButtonList ID="rbFurnished" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesFurnished" />
-                    <asp:ListItem Text="No" Value="noFurnished" />
-            </asp:RadioButtonList>
-            </div>
-            <div class="col">
-              <label for="formGroupExampleInput">Do you smoke/ allow smokers?*</label>
-              <asp:RadioButtonList ID="rbSmoke" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesSmoke" />
-                    <asp:ListItem Text="No" Value="noSmoke" />
-            </asp:RadioButtonList>
-            </div> <!--end col-->
-                 <div class="col">
-              <label for="formGroupExampleInput">Do you have pets?*</label>
-              <asp:RadioButtonList ID="rbPets" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesPets" />
-                    <asp:ListItem Text="No" Value="noPets" />
-            </asp:RadioButtonList>
-            </div> <!--end col-->
           </div> <!--end row class-->
             <div class="row">
-            <div class="col">
-              <label for="formGroupExampleInput">Tell us more about your rental space*</label>
-              <asp:Textbox ID="descriptionTextbox" class="form-control" placeholder="" runat="server"></asp:Textbox>
-            </div>
+            
           </div> <!--end row class-->
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
             
-             <div class="col-md-6"><asp:Button ID ="submitButton" class="btn" Text ="Next>" type="submit" onClick="submitBasicInfo" style="float: right;" runat="server"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="submitPropInfoButton" class="btn" Text ="Next>" type="submit" onClick="submitPropInfo" style="float: right;" runat="server"></asp:Button></div>
             
         </div>     
-       </form> <!--end form-->
       </div> <!--end container-->
     </section>
 </asp:Content>

@@ -99,11 +99,12 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                     sc.Open();
                     insertHost.ExecuteNonQuery();
 
-                    SqlCommand insert = new SqlCommand("SELECT hostID FROM [Capstone].[dbo].[Host] WHERE lower(Email) = @Email", sc);
+                    SqlCommand insert = new SqlCommand("SELECT HostID FROM [Capstone].[dbo].[Host] WHERE lower(Email) = @Email", sc);
                     insert.Parameters.AddWithValue("@Email", email.ToLower());
                     insert.Connection = sc;
                     int hostID = Convert.ToInt32(insert.ExecuteScalar());
                     insert.ExecuteNonQuery();
+                    Session["hostID"] = hostID;
 
 
                     Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);
