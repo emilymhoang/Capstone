@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-public partial class BasicInfoTenant : System.Web.UI.Page
+using System.Data.SqlClient;
+using System.Web.Configuration;
+public partial class BasicInfoHomeowner : System.Web.UI.Page
 {
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
@@ -15,7 +14,6 @@ public partial class BasicInfoTenant : System.Web.UI.Page
 
     }
 
-    
     protected void submitBasicInfo(object sender, EventArgs e)
     {
         String emailNew = emailTextbox.Text;
@@ -23,7 +21,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
 
 
         sc.Open();
-        SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Tenant] WHERE lower(email) = @Email", sc);
+        SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Host] WHERE lower(email) = @Email", sc);
         emailCheck.Parameters.AddWithValue("@Email", emailNew);
         emailCheck.Connection = sc;
         int count = Convert.ToInt32(emailCheck.ExecuteScalar());
@@ -41,7 +39,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
                 Session["email"] = emailTextbox.Text;
                 Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
 
-                Response.Redirect("CreateLoginTenant.aspx");
+                Response.Redirect("CreateLoginHomeowner.aspx");
             }
             else
             {
@@ -64,12 +62,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
         emailTextbox.Text = "emily@gmail.com";
         confirmEmailTextbox.Text = "emily@gmail.com";
         phoneNumberTextbox.Text = "703-342-7285";
-
-    }
-    protected void UploadButton_Click(object sender, EventArgs e)
-    {
-        //Insert image
+    
     }
 
-
-    }
+}

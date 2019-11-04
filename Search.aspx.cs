@@ -35,13 +35,18 @@ public partial class Search : System.Web.UI.Page
         } else
         {
             searchBy = Int32.TryParse(propertySearch, out a);
+            if (a < 0)
+            {
+                lblInvalidSearch.Text = "Enter a valid zip.";
+                return;
+            }
             lblInvalidSearch.Text = String.Empty;
         }
 
         
 
 
-        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString))
+        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -107,6 +112,7 @@ public partial class Search : System.Web.UI.Page
                 }
             }
         }
+        Response.Redirect("SearchResults.aspx");
 
 
     }

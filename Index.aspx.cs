@@ -9,7 +9,7 @@ public partial class Index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
     protected void getStarted(object sender, EventArgs e)
     {
@@ -17,7 +17,14 @@ public partial class Index : System.Web.UI.Page
     }
     protected void myAccount(object sender, EventArgs e)
     {
-        Response.Redirect("Login.aspx");
+        if (Session["LoggedIn"].ToString() == "true")
+        {
+            Response.Redirect("TenantDashboard.aspx");
+        }
+        else
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
     protected void translate(object sender, EventArgs e)
     {

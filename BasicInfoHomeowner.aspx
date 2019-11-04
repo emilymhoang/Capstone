@@ -1,37 +1,22 @@
-﻿<%@ Page Title="Basic Info Tenant" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BasicInfoTenant.aspx.cs" Inherits="BasicInfoTenant" %>
+﻿<%@ Page Title="Basic Info Tenant" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BasicInfoHomeowner.aspx.cs" Inherits="BasicInfoHomeowner" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-          <style type="text/css">
-       h1 {
-        font-family: 'Oswald', sans-serif;
-        color: #CC6559;
-        font-size: 50px;
-        }
-
-        .btn {
-           font-family: 'Oswald', sans-serif;
-           color: white; 
-           font-size: 20px;
-       }
-
-        .form-control{
-            height: 50px;
-            font-size:20px;
-        }
-        </style>
-
-    <header style="margin-top: 8rem; font-family: 'Oswald', sans-serif; color: #756664;">
+   <header style="margin-top: 8rem;">
       <div class="container">
         <h1>Tell us about yourself.</h1>
-        <p style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Let us find you the perfect space.</p>    
+        <p>Let us find you the perfect housemate.</p>
                 <div class="progress " >
-                <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 33%; " aria-valuenow="33" ></div>
+                <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 25%; " aria-valuenow="25" ></div>
                </div>
       </div>
+       
+   
+       
+       
     </header>
 
-    <section id="creation" style="margin-top: 4rem; font-family: 'Oswald', sans-serif; color: #756664; font-size: 25px;">
+    <section id="creation" style="margin-top: 4rem;">
       <div class="container">
           <div class="row">
             <div class="col">
@@ -45,16 +30,17 @@
               <asp:RequiredFieldValidator ID="lastNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="lastNameTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
+          <br>
           <div class="row">
             <div class="col">
-             <label for="formGroupExampleInput">Gender</label><br />
-               <asp:DropDownList ID="DropDownListGender" runat="server">
-	                <asp:ListItem Value="M">Male</asp:ListItem>
-                    <asp:ListItem Value="F">Female</asp:ListItem>
-                    <asp:ListItem Value="O">Other</asp:ListItem>
+             <label for="formGroupExampleInput">Gender</label>
+              <asp:DropDownList ID="DropDownListGender" runat="server">
+	<asp:ListItem Value="M">Male</asp:ListItem>
+    <asp:ListItem Value="F">Female</asp:ListItem>
+    <asp:ListItem Value="O">Other</asp:ListItem>
                   </asp:DropDownList>
               <asp:RequiredFieldValidator ID="genderRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListGender" ForeColor="#B23325"></asp:RequiredFieldValidator>
-            </div>
+                </div>
             <div class="col">
                  <div class="form-group">
               <label for="formGroupExampleInput">Date of Birth</label>
@@ -79,20 +65,21 @@
 
         <div class="row">
             <div class="col">
-              <label for="formGroupExampleInput">Email</label>
+               <label for="formGroupExampleInput">Email</label>
               <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
               <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
-               <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invaid Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="emailTextBox"></asp:RegularExpressionValidator>             
             </div>
-            <div class="col">
+           <div class="col">
               <label for="formGroupExampleInput">Confirm Email</label>
               <asp:Textbox id="confirmEmailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
               <asp:Label ID="resultmessage" runat="server" ForeColor="Red"></asp:Label>
-              <asp:Label ID="emailLabel" runat="server" Text="" ForeColor="Red"></asp:Label>
+               <asp:Label ID="emailLabel" runat="server" Text="" ForeColor="Red"></asp:Label>
                 
-                <asp:RequiredFieldValidator ID="confirmRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="confirmEmailTextbox" ForeColor="#B23325" Display="Dynamic"></asp:RequiredFieldValidator>
+               <asp:RequiredFieldValidator ID="confirmRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="confirmEmailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
+        <br>
+            <br>
           <div class="row">
              <div class="col">
               <label for="formGroupExampleInput">Phone Number</label>
@@ -100,21 +87,17 @@
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
               <div class="col">
-                  <label for="formGroupExampleInput">Profile Picture</label>
-                <asp:FileUpload id="FileUploadControl" runat="server" />
-                <asp:Button runat="server" id="UploadButton" text="Upload" onclick="UploadButton_Click" />
-                <br /><br />
-                <asp:Label runat="server" id="StatusLabel" text="Upload status: " />
-
-             </div> <!--end col-->
+             </div>
+          <!--end col-->
           </div> <!--end row class-->
-                          
+        <br>
+        
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
-            <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
-             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next>" type="submit" onClick="submitBasicInfo" style="float: right;" runat="server" CausesValidation="true"></asp:Button></div>
+            
+             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next>" type="submit" onClick="submitBasicInfo" style="float: right;" runat="server"></asp:Button></div>
+            
         </div>     
       </div> <!--end container-->
     </section>
 </asp:Content>
-   
