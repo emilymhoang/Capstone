@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using System.Data;
-
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -12,20 +9,34 @@ using System.Web.UI.WebControls;
 
 public partial class EditProfileTenant : System.Web.UI.Page
 {
-    SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
+    SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString);
+    String firstName;
+    String lastName;
+    String gender;
+    String dateOfBirth;
+    String email;
+    String phoneNumber;
+    String password;
     int tenantID;
     protected void Page_Load(object sender, EventArgs e)
     {
         sc.Open();
-        String username = Session["username"].ToString();
+        firstName = Session["firstName"].ToString();
+        lastName = Session["lastName"].ToString();
+        gender = Session["gender"].ToString();
+        dateOfBirth = Session["dateOfBirth"].ToString();
+        email = Session["email"].ToString();
+        phoneNumber = Session["phoneNumberTextbox"].ToString();
+        password = Session["password"].ToString();
 
-        SqlCommand insert = new SqlCommand("SELECT TenantID FROM [Capstone].[dbo].[Login] WHERE Username = @Username", sc);
-        insert.Parameters.AddWithValue("@Username", username);
+        SqlCommand insert = new SqlCommand("SELECT TenantID FROM [Capstone].[dbo].[Tenant] WHERE lower(FirstName) = @FirstName AND lower(LastName) = @LastName", sc);
+        insert.Parameters.AddWithValue("@LastName", lastName);
+        insert.Parameters.AddWithValue("@FirstName", firstName);
         insert.Connection = sc;
         tenantID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
         SqlCommand filter = new SqlCommand("SELECT Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
-                            "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated FROM [Capstone].[dbo].[Tenant] WHERE " +
+                            "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated FROM [Capstone].[dbo].[Tenant] WHERE" +
                             "TenantID = " + tenantID, sc);
 
         SqlDataReader rdr = filter.ExecuteReader();
@@ -45,72 +56,20 @@ public partial class EditProfileTenant : System.Web.UI.Page
         sc.Open();
         System.Data.SqlClient.SqlCommand update = new System.Data.SqlClient.SqlCommand();
         update.Connection = sc;
-        //SqlCommand filter = new SqlCommand("SELECT Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate, Password," +
-        //                    "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated, Username, ConfirmPassword FROM [Capstone].[dbo].[Tenant] WHERE" +
-        //                    "TenantID = " + tenantID, sc);
-
+        SqlCommand filter = new SqlCommand("SELECT Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate, Password," +
+                            "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated, Username, ConfirmPassword FROM [Capstone].[dbo].[Tenant] WHERE" +
+                            "TenantID = " + tenantID, sc);
         update.CommandText = "UPDATE [Capstone].[dbo].[Tenant] SET Email= @Email, PhoneNumber= @PhoneNumber, FirstName= @FirstName," +
             "LastName = @LastName, Password = @Password WHERE TenantID = " + tenantID;
 
-        update.Parameters.AddWithValue("@Email", emailTextbox.Text);
-        update.Parameters.AddWithValue("@PhoneNumber", phoneNumberTextbox.Text);
-        update.Parameters.AddWithValue("@FirstName", firstNameTextbox.Text);
-        update.Parameters.AddWithValue("@LastName", lastNameTextbox.Text);
-        update.Parameters.AddWithValue("@Password", passwordTextbox.Text);
+        update.Parameters.AddWithValue("@Email", email);
+        update.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+        update.Parameters.AddWithValue("@FirstName", firstName);
+        update.Parameters.AddWithValue("@LastName", lastName);
+        update.Parameters.AddWithValue("@Password", password);
 
         resultmessage.Text = "Property is updated.";
         update.ExecuteNonQuery();
         sc.Close();
-
-        //using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-        //{
-        //    using (SqlCommand update = new SqlCommand())
-        //    {
-        //        update.Connection = connection;
-        //        update.CommandType = CommandType.Text;
-
-        //        update.CommandText = "UPDATE [Capstone].[dbo].[Tenant] SET Email= @Email, PhoneNumber= @PhoneNumber, FirstName= @FirstName," +
-        //    "LastName = @LastName, Password = @Password WHERE TenantID = " + tenantID;
-
-        //        try
-        //        {
-        //            connection.Open();
-        //            using (SqlDataReader reader = update.ExecuteReader())
-        //            {
-        //                if (reader.HasRows)
-        //                {
-        //                    while (reader.Read())
-        //                    {
-        //                        int house = Convert.ToInt32(reader["HouseNumber"]);
-        //                        string street = (string)reader["Street"];
-        //                        string city = (string)reader["CityCounty"];
-        //                        string state = (string)reader["HomeState"];
-        //                        string country = (string)reader["Country"];
-        //                        int zip = Convert.ToInt32(reader["Zip"]);
-        //                        double price = Convert.ToDouble(reader["PriceRange"]);
-        //                        int rooms = (int)reader["NumberBedrooms"];
-        //                        int availability = 1;
-        //                        int host = (int)reader["HostID"];
-
-
-        //                        Property prop = new Property(house, street, city, state, country, zip, price, rooms, availability, host);
-
-        //                        Property.lstPropertySearchResults.Add(prop);
-        //                    }
-
-        //                }
-
-
-        //            }
-        //        }
-        //        catch (SqlException t)
-        //        {
-        //            string b = t.ToString();
-        //        }
-
-        //    }
-        //}
-
-
     }
 }

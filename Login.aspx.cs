@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
+    SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -57,8 +57,8 @@ public partial class _Default : System.Web.UI.Page
             resultmessage.Text = "Login failed.";
         }
         sc.Close();
-        Session["LoggedIn"] = true;
         Response.Redirect("TenantDashboard.aspx");
+        Session["LoggedIn"] = true;
         //}
         //catch
         //{

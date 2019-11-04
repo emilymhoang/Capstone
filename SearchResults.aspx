@@ -96,7 +96,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button runat="server" OnClick="FavoritesButton" ID="btnAddFav" Text="Add Favorite" />
+                            <asp:Button runat="server" ID="btnAddFav" Text="Add Favorite" />
                         </td>
                     </tr>
                 </table>

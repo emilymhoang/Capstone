@@ -11,14 +11,14 @@ using System.Web.UI.WebControls;
 
 public partial class TenantDashboard : System.Web.UI.Page
 {
-    SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
+    SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
 
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
 
-        lvFavorites.DataSource = Property.lstFavorites;
+        lvFavorites.DataSource = Favorite.lstFavorites;
         lvFavorites.DataBind();
 
         sc.Open();
@@ -32,7 +32,7 @@ public partial class TenantDashboard : System.Web.UI.Page
         insert.ExecuteNonQuery();
         Session["tenantID"] = tenantID;
    
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email FROM [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID", sc);
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, ProfilePic FROM [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID", sc);
         filter.Parameters.AddWithValue("@TenantID", tenantID);
         SqlDataReader rdr = filter.ExecuteReader();
         while (rdr.Read())
@@ -41,7 +41,7 @@ public partial class TenantDashboard : System.Web.UI.Page
             emailTextbox.Text = rdr["Email"].ToString();
             phoneTextbox.Text = rdr["PhoneNumber"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
-            //image1.ImageUrl = rdr["Images"].ToString();
+            image1.ImageUrl = rdr["ProfilePic"].ToString();
         }
         usernameTextbox.Text = Session["username"].ToString();
     }

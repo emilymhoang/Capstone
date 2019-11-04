@@ -107,7 +107,7 @@
     <div class="row">
         <div class="col-md-2" style="margin: 0 auto;">
             <p style="text-align: center;"><img src="images/icons-01.png" style="max-width: 100px;"></p>
-            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Create a profile.</p>
+            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Text goes here.</p>
         </div>
         <div class="col-md-1">
             <p style="text-align: center; font-size: 5rem; margin: 0 auto; margin-top: 2rem;">&#8594;</p>
@@ -115,7 +115,7 @@
 
         <div class="col-md-2" style="margin: 0 auto;">
             <p style="text-align: center;"><img src="images/icons-02.png" style="max-width: 100px;"></p>
-            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664;font-size: 20px;">Fill out your preferences.</p>
+            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664;font-size: 20px;">Text goes here.</p>
         </div>
         <div class="col-md-1">
             <p style="text-align: center; font-size: 5rem; margin: 0 auto; margin-top: 2rem;">&#8594;</p>
@@ -123,25 +123,23 @@
 
         <div class="col-md-2" style="margin: 0 auto;">
             <p style="text-align: center;"><img src="images/icons-03.png" style="max-width: 100px;"></p>
-            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Get cleared.</p>
+            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Text goes here.</p>
         </div>
         <div class="col-md-1">
             <p style="text-align: center; font-size: 5rem; margin: 0 auto; margin-top: 2rem;">&#8594;</p>
         </div>
         <div class="col-md-2" style="margin: 0 auto;">
             <p style="text-align: center;"><img src="images/icons-04.png" style="max-width: 100px;"></p>
-            <p style="text-align: center;font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Find your housing match.</p>
+            <p style="text-align: center;font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Text goes here.</p>
         </div>
 
-    <    </div><!-- end div row! -->
-
-
+    </div><!-- end div row! -->
 
     <div class="row" style="margin-top: 2rem; margin-left: 1rem;">
         <div class="col-md-12">
             <h1 style=" text-align: center; font-family: 'Oswald', sans-serif; color: #756664"; >We have properties available in the following locations</h1>
-            <asp:Button type="button" class="btn btn" style="text-align: center;font-family: 'Oswald', sans-serif; color: white; font-size: 45px;" runat="server" Text ="Get Started" onClick="getStarted" CausesValidation="false"></asp:Button>
-<div class='tableauPlaceholder' id='viz1572827549069' style=margin:auto;' position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MD&#47;MDFDSM6CD&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;MDFDSM6CD' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MD&#47;MDFDSM6CD&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1572827549069');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>            <script type='text/javascript'>var divElement = document.getElementById('viz1572313628086'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '727px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+            <div class='tableauPlaceholder' id='viz1572313628086' style='margin:auto; position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CapstoneMap_15723112370830&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CapstoneMap_15723112370830&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CapstoneMap_15723112370830&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>
+            <script type='text/javascript'>var divElement = document.getElementById('viz1572313628086'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '727px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
         </div>  
     </div><!-- end div row! -->
 
@@ -159,3 +157,4 @@
      </div>-->
     <!-- end div row! -->
 </asp:Content>
+

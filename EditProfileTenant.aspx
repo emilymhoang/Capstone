@@ -2,25 +2,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-             <style type="text/css">   
-    h1 {
-        font-family: 'Oswald', sans-serif;
-        color: #CC6559;
-        font-size: 50px;
-        }
-
-        .btn {
-           font-family: 'Oswald', sans-serif;
-           color: white; 
-           font-size: 20px;
-       }
-
-        .form-control{
-            height: 50px;
-            font-size:20px;
-        }
-        </style>
-    <header style="margin-top: 8rem;">
+   <header style="margin-top: 8rem;">
       <div class="container">
         <h1>Edit Profile</h1>
       </div>
@@ -36,7 +18,7 @@
        
     </header>
 
-    <section id="creation" style="margin-top: 4rem; font-family: 'Oswald', sans-serif; color: #756664; font-size: 18px">
+    <section id="creation" style="margin-top: 4rem;">
       <div class="container">
           <div class="row">
             <div class="col">
