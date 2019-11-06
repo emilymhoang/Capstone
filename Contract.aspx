@@ -10,7 +10,7 @@
 
    <header style="margin-top: 8rem;">b
       <div class="container">
-        <h1 style="font-family: 'Oswald', sans-serif; color: #53A39F;">RENTAL AGREEMENT</h1>
+            <h1 style="font-family: 'Oswald', sans-serif; color: black;">We made a sample agreement to make things easier for you.</h1>
       </div>
        
     
@@ -21,6 +21,7 @@
       <div class="container">
           <div class="row" style="margin-bottom:2rem;">
             <div class="col">
+                <h2 style="font-family: 'Oswald', sans-serif; color: #53A39F;">RENTAL AGREEMENT</h2>
                 <h3>Fair Housing for all is the cornerstone of RoomMagnet's  philosophy. Please refer to the Fair Housing  Act link  at the  end of this  agreement</h3>
                 <label for="formGroupExampleInput">This is a good faith agreement between Tenant and Host (owner). It is intended to promote household harmony by clarifying the expectations and responsibilities of the Host(s) and Tenant. The Host and Tenant should review this document. Please be aware there are landlord-tenant laws that govern each state. Please refer to the link at the end of this agreement.</label>
             </div>

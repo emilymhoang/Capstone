@@ -96,7 +96,7 @@
           <div class="row">
              <div class="col">
               <label for="formGroupExampleInput">Phone Number</label>
-              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="50" placeholder="xxx-xxx-xxxx" runat="server"></asp:Textbox>
+              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="15" placeholder="xxx-xxx-xxxx" runat="server"></asp:Textbox>
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
               <div class="col">

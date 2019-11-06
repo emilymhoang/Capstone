@@ -111,6 +111,70 @@ public partial class TenantDashboard : System.Web.UI.Page
 
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
+
+        //favorite
+        Favorite.lstFavorites.Clear();
+        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+
+
+                command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
+                    "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') " +
+                    "as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] " +
+                    "on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on " +
+                    "[dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID left join [dbo].[Favorite] on " +
+                    "[dbo].[PropertyRoom].RoomID = [dbo].[Favorite].RoomID where [dbo].[Favorite].TenantID = @tenantid";
+                command.Parameters.AddWithValue("@tenantid", tenantIDRefresh);
+
+
+                try
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
+                                string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
+
+                                string description = (string)reader["BriefDescription"];
+
+
+                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
+
+                                Favorite fav = new Favorite(name, location, description, price);
+                                Favorite.lstFavorites.Add(fav);
+                            }
+
+                        }
+                        else
+                        {
+                            //lblInvalidSearch.Text = "Search returned no properties";
+                        }
+
+                    }
+                }
+                catch (SqlException t)
+                {
+                    string b = t.ToString();
+                }
+                finally
+                {
+                    connection.Close();
+
+                }
+
+            }
+        }
+
+        lvFavorites.DataSource = Favorite.lstFavorites;
+        lvFavorites.DataBind();
     }
     protected void sendMessage(object sender, EventArgs e)
     {
@@ -220,8 +284,13 @@ public partial class TenantDashboard : System.Web.UI.Page
 
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
+        messageTextbox.Text = string.Empty;
     }
 
+    protected void contract(object sender, EventArgs e)
+    {
+        Response.Redirect("Contract.aspx");
+    }
 
     protected void logout(object sender, EventArgs e)
     {

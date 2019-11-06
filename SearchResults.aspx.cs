@@ -14,7 +14,7 @@ public partial class SearchResults : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        lvSearchResults.DataSource = Property.lstPropertySearchResults;
+        lvSearchResults.DataSource = SearchResult.lstSearchResults;
         lvSearchResults.DataBind();
     }
 
@@ -53,9 +53,9 @@ public partial class SearchResults : System.Web.UI.Page
                                 int tenantID = (int)reader["TenantID"];
 
 
-                                Favorite fav = new Favorite(house, street, city, state, country, zip, price, rooms, availability, host, tenantID);
+                                //Favorite fav = new Favorite(house, street, city, state, country, zip, price, rooms, availability, host, tenantID);
 
-                                Favorite.lstFavorites.Add(fav);
+                                //Favorite.lstFavorites.Add(fav);
                             }
 
                         }

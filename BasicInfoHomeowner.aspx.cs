@@ -55,13 +55,13 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
 
     protected void populate(object sender, EventArgs e)
     {
-        firstNameTextbox.Text = "Emily";
-        lastNameTextbox.Text = "Hoang";
-        DropDownListGender.SelectedValue = "F";
-        dateOfBirthTextbox.Text = "12-02-1997";
-        emailTextbox.Text = "emily@gmail.com";
-        confirmEmailTextbox.Text = "emily@gmail.com";
-        phoneNumberTextbox.Text = "703-342-7285";
+        firstNameTextbox.Text = "Carey";
+        lastNameTextbox.Text = "Cole";
+        DropDownListGender.SelectedValue = "M";
+        dateOfBirthTextbox.Text = "10-25-1970";
+        emailTextbox.Text = "colecb@jmu.edu";
+        confirmEmailTextbox.Text = "colecb@jmu.edu";
+        phoneNumberTextbox.Text = "571-555-5555";
     
     }
 

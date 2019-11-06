@@ -54,7 +54,7 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Password</label>
-              <asp:Textbox id="passwordTextbox" class="form-control" MaxLength="30" placeholder="Password" runat="server"></asp:Textbox>
+              <asp:Textbox type="password" id="passwordTextbox" class="form-control" MaxLength="30" placeholder="Password" runat="server"></asp:Textbox>
               <asp:RequiredFieldValidator ID="passwordRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="passwordTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">

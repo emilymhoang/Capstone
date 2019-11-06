@@ -26,7 +26,10 @@
             <asp:Label ID="resultUser" runat="server" ForeColor="Red"></asp:Label>
             </div>
               <div class="col">
-              <label for="formGroupExampleInput"></label>
+               <label for="formGroupExampleInput">Profile Picture</label><br>
+                <asp:FileUpload id="FileUploadControl" runat="server" />
+                <br /><br />
+                <asp:Label runat="server" id="StatusLabel" text=" " />
             </div><!--end col-->
           </div> <!--end row class-->
           <br>

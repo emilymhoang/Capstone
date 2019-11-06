@@ -8,7 +8,7 @@
         }
         </style>
 
-   <header style="margin-top: 8rem;">b
+   <header style="margin-top: 8rem;">
       <div class="container">
         <h1 style="font-family: 'Oswald', sans-serif; color: #53A39F;">Frequently Asked Questions</h1>
       </div>

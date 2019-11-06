@@ -105,7 +105,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     if (FileUploadControl.HasFile)
                     {
                         string strname = FileUploadControl.FileName.ToString();
-                        //FileUploadControl.PostedFile.SaveAs(Server.MapPath("~/") + strname);
+                        FileUploadControl.PostedFile.SaveAs(Server.MapPath("~/images/") + strname);
                         SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[Tenant] SET ProfilePic = @strname WHERE TenantID = @TenantID", sc);
                         cmd.Parameters.AddWithValue("@TenantID", tenantID);
                         cmd.Parameters.AddWithValue("@strname", strname);
@@ -124,6 +124,8 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     insertLogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(newTenant.password));
                     insertLogin.Parameters.AddWithValue("@TenantID", tenantID);
 
+                    insertLogin.ExecuteNonQuery();
+
                     SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [Capstone].[dbo].[Login] WHERE TenantID = @TenantID", sc);
                     getAccountID.Parameters.AddWithValue("@TenantID", tenantID);
                     getAccountID.Connection = sc;
@@ -132,7 +134,6 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     Session["accountID"] = accountID;
                     Session["username"] = newTenant.userName;
 
-                    insertLogin.ExecuteNonQuery();
                     sc.Close();
                     Response.Redirect("CreateAccountSafety.aspx");
                 }

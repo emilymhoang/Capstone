@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 public partial class PropertyRoomInfo : System.Web.UI.Page
 {    
@@ -28,45 +29,67 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         insert.Connection = sc;
         int propertyID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
-       
-       
-        System.Data.SqlClient.SqlCommand insertRoom = new System.Data.SqlClient.SqlCommand();
-        insertRoom.Connection = sc;
+        sc.Close();
 
-        double monthlyPrice = Convert.ToInt32(monthlyPriceTextbox.Text);
+        double monthlyPrice = Convert.ToDouble(monthlyPriceTextbox.Text);
         int sqFoot = Convert.ToInt32(squareFootageTextbox.Text);
         String avail = DropDownListAvailibility.SelectedValue;
         String display = displayTextbox.Text;
         
         PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display);
-        try
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
-            sc.Open();
-            insertRoom.CommandText = "INSERT INTO [Capstone].[dbo].[PropertyRoom] (PropertyID, MonthlyPrice, SquareFootage, Availability, BriefDescription, LastUpatedBy, LastUpdated, TenantID) " +
-                "VALUES (@PropertyID, @MonthlyPrice, @SquareFootage, @Availability, @BriefDescription, @LastUpatedBy, @LastUpdated, @TenantID); ";
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO [dbo].[PropertyRoom] ([PropertyID],[TenantID],[MonthlyPrice],[SquareFootage],[Availability],[BriefDescription],[LastUpdatedBy],[LastUpdated]) VALUES (@propid,@tenantid,@price,@sqft,@avail,@desc,@lub,@lu)";
 
-            insertRoom.Parameters.AddWithValue("@PropertyID", newRoom.propertyID);
-            insertRoom.Parameters.AddWithValue("@MonthlyPrice", newRoom.monthlyPrice);
-            insertRoom.Parameters.AddWithValue("@SquareFootage", newRoom.squareFootage);
-            insertRoom.Parameters.AddWithValue("@Availability", newRoom.availability);
-            insertRoom.Parameters.AddWithValue("@BriefDescription", newRoom.briefDescription);
-            insertRoom.Parameters.AddWithValue("@LastUpdatedBy", "Kessler");
-            insertRoom.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
-            insertRoom.Parameters.AddWithValue("@TenantID", "null");
+                command.Parameters.AddWithValue("@propid", newRoom.propertyID);
+                command.Parameters.AddWithValue("@tenantid", newRoom.tenantID);
+                command.Parameters.AddWithValue("@price", newRoom.monthlyPrice);
+                command.Parameters.AddWithValue("@sqft", newRoom.squareFootage);
+                command.Parameters.AddWithValue("@avail", newRoom.availability);
+                command.Parameters.AddWithValue("@desc", newRoom.briefDescription);
+                command.Parameters.AddWithValue("@lub", "Kessler");
+                command.Parameters.AddWithValue("@lu", DateTime.Now);
 
-            insertRoom.ExecuteNonQuery();
+
+                try
+                {
+                    connection.Open();
+                    int recordsAffected = command.ExecuteNonQuery();
+                }
+                catch (Exception t)
+                {
+                    string f = t.ToString();
+                }
+                finally
+                {
+                    connection.Close();
+                    Response.Redirect("CreateAccountSafetyHomeowner.aspx");
+                }
+            }
         }
-        catch(Exception t)
-        {
-            string g = t.ToString();
-        }
-        finally
-        {
-            sc.Close();
-            Response.Redirect("CreateAccountSafetyHomeowner.aspx");
-        }
+
+
+
+
     }
 
+    protected void populate(object sender, EventArgs e)
+    {
+        monthlyPriceTextbox.Text = "800.00";
+        squareFootageTextbox.Text = "500";
+        displayTextbox.Text = "Basement bedroom near City with a balcony";
+        rbFurnished.SelectedValue = "y";
+        rbPets.SelectedValue = "y";
+        rbPrivateBr.SelectedValue = "y";
+        rbPrivateEntr.SelectedValue = "y";
+        rbSmoke.SelectedValue = "n";
+        rbStorage.SelectedValue = "y";
+
+    }
 
 
 }

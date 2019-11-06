@@ -61,8 +61,8 @@ public partial class BasicInfoTenant : System.Web.UI.Page
         lastNameTextbox.Text = "Hoang";
         DropDownListGender.SelectedValue = "F";
         dateOfBirthTextbox.Text = "12-02-1997";
-        emailTextbox.Text = "emily@gmail.com";
-        confirmEmailTextbox.Text = "emily@gmail.com";
+        emailTextbox.Text = "hoangex@dukes.jmu.edu";
+        confirmEmailTextbox.Text = "hoangex@dukes.jmu.edu";
         phoneNumberTextbox.Text = "703-342-7285";
 
     }

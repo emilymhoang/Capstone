@@ -19,12 +19,12 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Monthly Price</label>
-              <asp:Textbox ID="monthlyPriceTextbox" class="form-control" MaxLength="30" placeholder="Ex. 800.00" runat="server"></asp:Textbox>
+              <asp:Textbox ID="monthlyPriceTextbox" class="form-control" MaxLength="10" placeholder="Ex. 800.00" runat="server"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="monthlyPriceRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="monthlyPriceTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Square Footage</label>
-              <asp:Textbox id="squareFootageTextbox" class="form-control" MaxLength="30" placeholder="Ex. 941" runat="server"></asp:Textbox>
+              <asp:Textbox id="squareFootageTextbox" class="form-control" MaxLength="10" placeholder="Ex. 941" runat="server"></asp:Textbox>
               <asp:RequiredFieldValidator ID="squareFootageRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="squareFootageTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
@@ -49,37 +49,37 @@
               <asp:RequiredFieldValidator ID="AvailibilityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListAvailibility" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
-                <label for="formGroupExampleInput">Don't fret, only your city, state, and zip code will appear on your profile to potential tenants</label>
+                <label for="formGroupExampleInput">Availibility will allow you to hide the room when you find a match, and show it as available when you want to bring it back for a new tenant</label>
             </div> <!--end col-->
           </div> <!--end row class-->
  <br>
             <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">What best describes your property? (To be shown to potential Tenant's)*</label>
-              <asp:Textbox ID="displayTextbox" class="form-control" placeholder="Ex. Basement bedroom near City" runat="server"></asp:Textbox>
+              <asp:Textbox ID="displayTextbox" class="form-control" placeholder="Ex. Basement bedroom near City" runat="server" MaxLength="200"></asp:Textbox>
                 <br>
             </div>
           </div> <!--end row class-->
              <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Does the space have a private bathroom?*</label>
-              <asp:RadioButtonList ID="rbPribateBr" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesPrivateBr" />
-                    <asp:ListItem Text="No" Value="noPrivateBr" />
+              <asp:RadioButtonList ID="rbPrivateBr" runat="server">
+                    <asp:ListItem Text="Yes" Value="y" />
+                    <asp:ListItem Text="No" Value="n" />
             </asp:RadioButtonList>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Does the space have a private enterance?*</label>
               <asp:RadioButtonList ID="rbPrivateEntr" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesPrivateEntr" />
-                    <asp:ListItem Text="No" Value="noPrivateEntr" />
+                    <asp:ListItem Text="Yes" Value="y" />
+                    <asp:ListItem Text="No" Value="n" />
             </asp:RadioButtonList>
             </div> <!--end col-->
                  <div class="col">
               <label for="formGroupExampleInput">Does the space have a closet/ storage space?*</label>
               <asp:RadioButtonList ID="rbStorage" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesStorage" />
-                    <asp:ListItem Text="No" Value="noStorage" />
+                    <asp:ListItem Text="Yes" Value="y" />
+                    <asp:ListItem Text="No" Value="n" />
             </asp:RadioButtonList>
             </div> <!--end col-->
           </div> <!--end row class-->
@@ -88,22 +88,22 @@
             <div class="col">
               <label for="formGroupExampleInput">Is the space furnished?*</label>
               <asp:RadioButtonList ID="rbFurnished" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesFurnished" />
-                    <asp:ListItem Text="No" Value="noFurnished" />
+                    <asp:ListItem Text="Yes" Value="y" />
+                    <asp:ListItem Text="No" Value="n" />
             </asp:RadioButtonList>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Do you smoke/ allow smokers?*</label>
               <asp:RadioButtonList ID="rbSmoke" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesSmoke" />
-                    <asp:ListItem Text="No" Value="noSmoke" />
+                    <asp:ListItem Text="Yes" Value="y" />
+                    <asp:ListItem Text="No" Value="n" />
             </asp:RadioButtonList>
             </div> <!--end col-->
                  <div class="col">
               <label for="formGroupExampleInput">Do you have pets?*</label>
               <asp:RadioButtonList ID="rbPets" runat="server">
-                    <asp:ListItem Text="Yes" Value="yesPets" />
-                    <asp:ListItem Text="No" Value="noPets" />
+                    <asp:ListItem Text="Yes" Value="y" />
+                    <asp:ListItem Text="No" Value="n" />
             </asp:RadioButtonList>
             </div> <!--end col-->
               </div> <!--end col-->

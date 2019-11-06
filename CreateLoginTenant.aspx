@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Basic Info Tenant" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CreateLoginTenant.aspx.cs" Inherits="CreateLoginTenant" %>
+﻿<%@ Page Title="Create Login Tenant" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CreateLoginTenant.aspx.cs" Inherits="CreateLoginTenant" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -42,7 +42,10 @@
             <asp:Label ID="resultUser" runat="server" ForeColor="Red"></asp:Label>
             </div>
               <div class="col-md-6">
-              <label for="formGroupExampleInput"></label>
+              <label for="formGroupExampleInput">Profile Picture</label><br>
+                <asp:FileUpload id="FileUploadControl" runat="server" />
+                <br /><br />
+                <asp:Label runat="server" id="StatusLabel" text=" " />
             </div><!--end col-->
           </div> <!--end row class-->
           <div class="row" >
@@ -68,20 +71,20 @@
             </div>
              <!--end col--
           </div> <!--end row class-->
-              <div class="row">
-              <div class="col">
-                  <label for="formGroupExampleInput">Profile Picture</label>
-                <asp:FileUpload id="FileUploadControl" runat="server" />
-                <br /><br />
-                <asp:Label runat="server" id="StatusLabel" text="Upload status: " />
+              <%--<div class="row">
+              <div class="col-md-6">
+                  
              </div> <!--end col-->
-          </div> <!--end row class-->
+                  <div class="col">
+              <label for="formGroupExampleInput"></label>
+            </div>
+          </div> <!--end row class-->--%>
 
+ 
+        <div class="row" style="margin-bottom: 3rem; margin-left:1rem;"> 
         
-        <div class="row" style="margin-bottom: 3rem;"> 
-          <div class="col-md-6"></div>
-            <div class="col-md-6"><asp:Button ID ="backButton" class="btn" Text ="<Back" type="submit" onClick="goBack" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
-             <div class="col-md-6"><asp:Button ID="next2Button" class="btn" type="submit" style="float: right;" runat="server" Text="Next" OnCommand="submitLogin_Click" AutoPostBack ="true"></asp:Button></div>
+            <div class="col-md-4 offset-1"><asp:Button ID ="backButton" class="btn" Text ="Back" type="submit" onClick="goBack" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
+             <div class="col-md-4 offset-3"><asp:Button ID="next2Button" class="btn" type="submit" style="float: left;" runat="server" Text="Next" OnCommand="submitLogin_Click" AutoPostBack ="true"></asp:Button></div>
             
         </div>     
       </div> 

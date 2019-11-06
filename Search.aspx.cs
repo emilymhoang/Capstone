@@ -23,7 +23,8 @@ public partial class Search : System.Web.UI.Page
 
     protected void search_Click(object sender, EventArgs e)
     {
-        Property.lstPropertySearchResults.Clear();
+        SearchResult.lstSearchResults.Clear();
+
         bool searchBy;
         int a;
         string propertySearch = searchTextbox.Text;
@@ -55,12 +56,20 @@ public partial class Search : System.Web.UI.Page
 
                 if (searchBy)
                 {
-                    command.CommandText = "select * from [dbo].[Property] where [dbo].[Property].[Zip] = @zip";
+                    command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
+                        "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, " +
+                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] on " +
+                        "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
+                        "where [dbo].[Property].Zip = @zip";
+
                     command.Parameters.AddWithValue("@zip", propertySearch);
                 }
                 else
                 {
-                    command.CommandText = "select * from [dbo].[Property] where [dbo].[Property].[CityCounty] = @city";
+                    command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
+                        "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
+                        "[dbo].[Host] left join [dbo].[Property] on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] " +
+                        "on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID where [dbo].[Property].CityCounty = @city";
                     command.Parameters.AddWithValue("@city", propertySearch);
                 }
                 
@@ -75,21 +84,18 @@ public partial class Search : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-                                int house = Convert.ToInt32(reader["HouseNumber"]);
-                                string street = (string)reader["Street"];
-                                string city = (string)reader["CityCounty"];
-                                string state = (string)reader["HomeState"];
-                                string country = (string)reader["Country"];
-                                int zip = Convert.ToInt32(reader["Zip"]);
+
+                                string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
+                                string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
+                                
+                                string description = (string)reader["BriefDescription"];
+                                
+                                
                                 double price = Convert.ToDouble(reader["MonthlyPrice"]);
-                                int rooms = (int)reader["NumberBedrooms"];
-                                int availability = 1;
-                                int host = (int)reader["HostID"];
+                                
+                                SearchResult result = new SearchResult(name, location, description, price);
 
-
-                                Property prop = new Property(house, street, city, state, country, zip, price, rooms, availability, host);
-
-                                Property.lstPropertySearchResults.Add(prop);
+                                SearchResult.lstSearchResults.Add(result);
                             }
                           
                         }
